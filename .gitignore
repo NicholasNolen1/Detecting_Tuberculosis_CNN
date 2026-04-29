@@ -1,0 +1,7 @@
+__pycache__
+.DS_Store
+
+Modified_Training_Data/
+organized_photos/
+Training_and_Test_Data/
+weights/

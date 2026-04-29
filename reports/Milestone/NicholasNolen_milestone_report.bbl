@@ -1,0 +1,28 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Costa et~al.(2025)Costa, Serrão, Fujimoto, Ogusku, Romero, Romaguera, Pinto, López, Binatti, and Filho]{Costa2025}
+Costa, M. G.~F., Serrão, M. K.~M., Fujimoto, L. B.~M., Ogusku, M.~M., Romero, F.~P., Romaguera, L.~V., Pinto, K. M.~B., López, Y.~P., Binatti, F., and Filho, C. F. F.~C.
+\newblock {ODS3 - Dataset of smear microscopy images labelled to evaluate methods for Tuberculosis diagnosis}.
+\newblock 2 2025.
+\newblock \doi{10.25452/figshare.plus.27209355.v1}.
+\newblock URL \url{https://plus.figshare.com/articles/dataset/_b_ODS3_-_Dataset_of_smear_microscopy_images_labelled_to_evaluate_methods_for_Tuberculosis_diagnosis_b_/27209355}.
+
+\bibitem[Lin \& Medical(2024)Lin and Medical]{lin2024tbdata}
+Lin, E. and Medical, W.
+\newblock Detecting mycobacterium tuberculosis bacilli from tb smear images, 2024.
+\newblock URL \url{https://doi.org/10.17632/yhybmfrmgs.1}.
+
+\bibitem[Trilaksana et~al.(2020)Trilaksana, Dwimudyari, Agoes, and Widhyatmoko]{TBDB}
+Trilaksana, H., Dwimudyari, G.~N., Agoes, A.~S., and Widhyatmoko, D.~B.
+\newblock Sputum smear images database: A resource for deep learning study based to detect bacilli for tb diagnose.
+\newblock \emph{AIP Conference Proceedings}, 2314\penalty0 (1):\penalty0 040013, 12 2020.
+\newblock ISSN 0094-243X.
+\newblock \doi{10.1063/5.0036388}.
+\newblock URL \url{https://doi.org/10.1063/5.0036388}.
+
+\end{thebibliography}
