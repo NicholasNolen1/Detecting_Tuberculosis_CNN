@@ -75,10 +75,10 @@ val_ds = tf.keras.utils.image_dataset_from_directory(
 
 augment_images = keras.Sequential([
     layers.RandomFlip("horizontal"),
-    layers.RandomRotation(0.2),
-    layers.RandomZoom(0.2),
-    layers.RandomBrightness(factor=0.1),
-    layers.RandomContrast(factor=0.2),
+    layers.RandomRotation(0.4),
+    layers.RandomZoom(0.4),
+    layers.RandomBrightness(factor=0.4), ## POTENTIALLY LOWER TO PREVENT BIAS TO OVERLY BRIGHT IMAGES??
+    layers.RandomContrast(factor=0.4), ## THESE TERMS WERE 2
 ])
 
 
@@ -131,7 +131,7 @@ model.add(layers.Activation('relu'))
 model.add(layers.MaxPooling2D((2, 2)))
 
 
-# model.add(layers.Dropout(0.1))
+model.add(layers.Dropout(0.1))
 
 model.add(layers.Conv2D(64, (3, 3)))
 model.add(layers.BatchNormalization())
@@ -152,8 +152,8 @@ model.add(layers.Activation('relu'))
 
 
 model.add(layers.Conv2D(128, (3, 3)))
-model.add(layers.Activation('relu'))
 model.add(layers.BatchNormalization())
+model.add(layers.Activation('relu'))
 # model.add(layers.MaxPooling2D((2, 2)))
 
 
@@ -187,10 +187,11 @@ loss_callback = tf.keras.callbacks.ModelCheckpoint(
 testing_callback = TestingScript()
 
 # number of epochs?
-history = model.fit(train_ds, epochs=20, 
+history = model.fit(train_ds, epochs=30, 
                     validation_data=val_ds,
                     callbacks=[loss_callback,
                                testing_callback])
+
 
 plt.plot(history.history['accuracy'], label='accuracy')
 plt.plot(history.history['val_accuracy'], label = 'val_accuracy')
