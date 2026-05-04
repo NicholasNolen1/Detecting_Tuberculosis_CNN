@@ -9,10 +9,15 @@ from tensorflow.keras.models import Sequential
 class TestingScript(tf.keras.callbacks.Callback):
     def __init__(self ):
         super().__init__()
-        self.crop_size = 244
+        self.crop_size = 224
         self.threshold = 0.5 # for classification
         self.n_samples = 100
         self.input_folder = 'Training_and_Test_Data/Positive_Negative_Dataset'
+        self.num_positive_predicted = []
+        self.num_negative_predicted = []
+        self.percent_positive_predicted = []
+        self.percent_negative_predicted = []
+
 
 
     def get_crops(self, image_path):
@@ -95,10 +100,16 @@ class TestingScript(tf.keras.callbacks.Callback):
             positive_sum_slide += slide_prediction
             total_positive_crops += pos_count
             total_num_crops += num_crops_tested
+            
+        print(f"testing {total_num_crops} positive slide crops\n")
 
         print(f"\ntesting sub croppings of slides labeled positive:")
         print(f"total amount of crops predicted positive: {total_positive_crops}")
         print(f"percent slides predicted positive: {positive_sum_slide / num_pos_samples:.2f}")
+        
+        self.num_positive_predicted.append(total_positive_crops)
+        self.num_negative_predicted.append(positive_sum_slide / num_pos_samples)
+         
 
         num_neg_samples = min(self.n_samples, len(negative_images)) # default to n_samples unless positive_images is too small
         neg_samples = np.random.choice(negative_images, num_neg_samples, replace=False)
@@ -120,10 +131,15 @@ class TestingScript(tf.keras.callbacks.Callback):
             total_positive_crops_negative_run += neg_count
             total_num_crops_negative_run += num_crops_tested
 
-            
+        
+        print(f"testing {total_num_crops_negative_run} positive slide crops\n")    
+        
         print("\ntesting sub croppings of slides labeled negative:")
         # subtracting total_positive_crops_negative_run from total crops to get total negative crops
         print(f"total number of crops predicted negative: {(total_num_crops_negative_run - total_positive_crops_negative_run )}")
         print(f"percent of slides predicted negative: {( num_neg_samples - negative_sum_slide ) / num_neg_samples:.2f}")
         
         print(f"\ntotal accurate slide prediction percentage: {( num_neg_samples - negative_sum_slide + positive_sum_slide) / (num_neg_samples + num_pos_samples):.2f}")
+        
+        self.percent_positive_predicted.append(total_num_crops_negative_run - total_positive_crops_negative_run) 
+        self.percent_negative_predicted.append(( num_neg_samples - negative_sum_slide ) / num_neg_samples)

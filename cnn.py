@@ -14,8 +14,8 @@ import sys
 
 ## EXPERIMENT WITH THESE:
 batch_size = 64
-img_height = 244
-img_width = 244
+img_height = 224
+img_width = 224
 
 
 ##SPLIT DATA INTO TRAIN AND TEST
@@ -77,8 +77,8 @@ augment_images = keras.Sequential([
     layers.RandomFlip("horizontal"),
     layers.RandomRotation(0.4),
     layers.RandomZoom(0.4),
-    layers.RandomBrightness(factor=0.4), ## POTENTIALLY LOWER TO PREVENT BIAS TO OVERLY BRIGHT IMAGES??
-    layers.RandomContrast(factor=0.4), ## THESE TERMS WERE 2
+    layers.RandomBrightness(factor=0.3), ## POTENTIALLY LOWER TO PREVENT BIAS TO OVERLY BRIGHT IMAGES??
+    layers.RandomContrast(factor=0.3), ## THESE TERMS WERE 2
 ])
 
 
@@ -92,6 +92,10 @@ augment_images = keras.Sequential([
 
 
 model = models.Sequential()
+
+
+
+model.add(layers.Input(shape=(img_height, img_width, 3)))
 
 model.add(augment_images)
 
@@ -107,7 +111,7 @@ model.add(augment_images)
 model.add(layers.Rescaling(1./255))
 
 
-# model.add(layers.Conv2D(16, (3, 3), input_shape=(img_height, img_width, 3)))
+# model.add(layers.Conv2D(16, (3, 3), ))
 # model.add(layers.BatchNormalization())
 # model.add(layers.Activation('relu'))
 # model.add(layers.MaxPooling2D((2, 2)))
@@ -116,8 +120,7 @@ model.add(layers.Rescaling(1./255))
 # model.add(layers.Dropout(0.2))
 
 
-
-model.add(layers.Conv2D(32, (3, 3),  input_shape=(img_height, img_width, 3)))
+model.add(layers.Conv2D(32, (3, 3)))
 model.add(layers.BatchNormalization())
 model.add(layers.Activation('relu'))
 model.add(layers.MaxPooling2D((2, 2)))
@@ -125,7 +128,7 @@ model.add(layers.MaxPooling2D((2, 2)))
 
 model.add(layers.Dropout(0.2))
 
-model.add(layers.Conv2D(32, (3, 3),  input_shape=(img_height, img_width, 3)))
+model.add(layers.Conv2D(32, (3, 3)))
 model.add(layers.BatchNormalization())
 model.add(layers.Activation('relu'))
 model.add(layers.MaxPooling2D((2, 2)))
@@ -187,20 +190,53 @@ loss_callback = tf.keras.callbacks.ModelCheckpoint(
 testing_callback = TestingScript()
 
 # number of epochs?
-history = model.fit(train_ds, epochs=30, 
+history = model.fit(train_ds, epochs=30, # make 30 
                     validation_data=val_ds,
                     callbacks=[loss_callback,
                                testing_callback])
 
 
-plt.plot(history.history['accuracy'], label='accuracy')
-plt.plot(history.history['val_accuracy'], label = 'val_accuracy')
-plt.xlabel('Epoch')
-plt.ylabel('Accuracy')
-plt.ylim([0.5, 1])
-plt.legend(loc='lower right')
+fig, ax_1 = plt.subplots()
+ax_1.plot(history.history['accuracy'], label='accuracy')
+ax_1.plot(history.history['val_accuracy'], label = 'val_accuracy')
+ax_1.set_xlabel('Epoch')
+ax_1.set_ylabel('Accuracy')
+ax_1.set_ylim([0.5, 1])
+ax_1.legend(loc='lower right')
+
+
+fig, ax_2 = plt.subplots()
+
+ax_2.plot(testing_callback.num_positive_predicted, color = 'blue')
+ax_2.plot(testing_callback.num_negative_predicted, color = 'red')
+ax_2.set_title('positive vs negative classification')
+ax_2.set_ylabel('Num Classified')
+ax_2.set_xlabel('Epoch')
+
+
+
+fig, ax_3 = plt.subplots()
+
+ax_3.plot(testing_callback.percent_positive_predicted, color = 'blue')
+ax_3.plot(testing_callback.percent_negative_predicted, color = 'red')
+ax_3.set_title('positive vs negative percent predicted')
+ax_3.set_ylabel('Percent Predicted')
+ax_3.set_xlabel('Epoch')
+
+fig, ax_4 = plt.subplots()
+ax_1.plot(history.history['val_loss'], label='val_loss', color = 'blue')
+ax_1.plot(history.history['val_accuracy'], label = 'val_accuracy')
+ax_1.set_xlabel('Epoch')
+ax_1.set_ylabel('Loss')
+ax_2.set_title('Validation Loss Over Time')
+ax_1.legend(loc='upper right')
+
+
+
 
 plt.show()
+
+
 
 test_loss, test_acc = model.evaluate(val_ds, verbose=2)
 

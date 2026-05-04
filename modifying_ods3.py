@@ -10,7 +10,7 @@ import cv2
 dir_root = 'Training_and_Test_Data/Bacterium_Quantity_Dataset/ODS3'
 annotation_root = os.path.join(dir_root, 'Annotated_ODS3', 'ANNOTATIONS')
 output_dir = 'Modified_Training_Data/ODS3'
-crop_size = 244
+crop_size = 224
 
 num_negative = 0
 num_positive = 0

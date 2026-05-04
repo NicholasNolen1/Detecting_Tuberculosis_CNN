@@ -39,7 +39,7 @@ def crop_image(input_path, output_dir, crop_size):
 
 input_folder = 'Training_and_Test_Data/Positive_Negative_Dataset'
 output_folder = 'Modified_Training_Data/Positive_Negative_Dataset'
-crop_size = 244
+crop_size = 224
 
 
 positive_images = glob(os.path.join(input_folder, "Positive", "*.jpg"))

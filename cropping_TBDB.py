@@ -6,7 +6,7 @@ from glob import glob
 annotation_dir = 'Training_and_Test_Data/TBDB/Annotations_quarterly'
 img_dir = 'Training_and_Test_Data/TBDB/JPEGS_quarterly'
 output_dir = 'Modified_Training_Data/TBDB'
-crop_size = 244
+crop_size = 224
 
 xml_files = glob(os.path.join(annotation_dir, "*.xml"))
 print(f"Found {len(xml_files)} files!")
