@@ -79,7 +79,6 @@ class Application(tk.Tk):
             self.title(name)
             
             self.index += 1
-        # self.after(self.duration_ms, self.display_next_slide)
         
     def display_prev_slide(self):
         if self.index  > 0:
@@ -92,7 +91,6 @@ class Application(tk.Tk):
             self.title(name)
             
             self.index -= 1
-        # self.after(self.duration_ms, self.display_next_slide)
 
     def start(self):
         self.display_next_slide()
@@ -100,7 +98,7 @@ class Application(tk.Tk):
 
 
 
-weights_file = 'weights/weights.keras'
+weights_file = 'pretrained_weights/weights-100-epochs.keras'
 
 model = tf.keras.models.load_model(weights_file)
 
@@ -174,11 +172,12 @@ def run_viewer(image, image_directory):
 
 
 # Positive Image:
-positive_image = "Training_and_Test_Data/Positive_Negative_Dataset/Positive/240524_688_24.jpg"
+positive_image = "Modified_Training_Data/ODS3/Positive/S18TR1EDFT042_crop9.jpg"
 
 # Negative Image:
-negative_image = "Training_and_Test_Data/Positive_Negative_Dataset/Negative/231228_416_41.jpg"
+# negative_image = "Training_and_Test_Data/Positive_Negative_Dataset/Negative/240525_734_79.jpg"
 
+negative_image = "Modified_Training_Data/TBDB/Negative/00208_5.jpg"
 run_viewer(positive_image, 'output_crops/positive')
 
 run_viewer(negative_image, 'output_crops/negative')

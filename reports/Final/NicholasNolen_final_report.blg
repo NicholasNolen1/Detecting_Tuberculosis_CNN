@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: NicholasNolen_final_report.aux
+The style file: ../style/icml2025.bst
+Database file #1: ../references/references.bib
+Warning--entry type for "lin2024tbdata" isn't style-file defined
+--line 121 of file ../references/references.bib
+Warning--empty journal in Costa2025
+You've used 8 entries,
+            2773 wiz_defined-function locations,
+            665 strings with 7514 characters,
+and the built_in function-call counts, 4703 in all, are:
+= -- 413
+> -- 358
+< -- 4
++ -- 119
+- -- 111
+* -- 435
+:= -- 760
+add.period$ -- 40
+call.type$ -- 8
+change.case$ -- 59
+chr.to.int$ -- 8
+cite$ -- 17
+duplicate$ -- 171
+empty$ -- 307
+format.name$ -- 124
+if$ -- 963
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 7
+newline$ -- 63
+num.names$ -- 34
+pop$ -- 99
+preamble$ -- 1
+purify$ -- 51
+quote$ -- 0
+skip$ -- 145
+stack$ -- 0
+substring$ -- 120
+swap$ -- 21
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 88
+warning$ -- 1
+while$ -- 33
+width$ -- 0
+write$ -- 140
+(There were 2 warnings)

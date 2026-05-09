@@ -2,6 +2,7 @@ import cv2
 import os
 import numpy as np
 import tensorflow as tf
+import matplotlib.pyplot as plt
 from glob import glob
 from tensorflow.keras.models import Sequential
 
@@ -36,7 +37,7 @@ class TestingScript(tf.keras.callbacks.Callback):
             for x in range(0, w - self.crop_size + 1, self.crop_size):
                 crop = image[y:y+self.crop_size, x:x+self.crop_size]
 
-                crop = cv2.cvtColor(crop, cv2.COLOR_RGB2BGR)
+                crop = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
                 
                 cropped_images.append(crop)
                 
@@ -108,7 +109,9 @@ class TestingScript(tf.keras.callbacks.Callback):
         print(f"percent slides predicted positive: {positive_sum_slide / num_pos_samples:.2f}")
         
         self.num_positive_predicted.append(total_positive_crops)
-        self.num_negative_predicted.append(positive_sum_slide / num_pos_samples)
+        self.percent_positive_predicted.append(positive_sum_slide / num_pos_samples) 
+
+
          
 
         num_neg_samples = min(self.n_samples, len(negative_images)) # default to n_samples unless positive_images is too small
@@ -132,7 +135,7 @@ class TestingScript(tf.keras.callbacks.Callback):
             total_num_crops_negative_run += num_crops_tested
 
         
-        print(f"testing {total_num_crops_negative_run} positive slide crops\n")    
+        print(f"testing {total_num_crops_negative_run} negative slide crops\n")    
         
         print("\ntesting sub croppings of slides labeled negative:")
         # subtracting total_positive_crops_negative_run from total crops to get total negative crops
@@ -141,5 +144,52 @@ class TestingScript(tf.keras.callbacks.Callback):
         
         print(f"\ntotal accurate slide prediction percentage: {( num_neg_samples - negative_sum_slide + positive_sum_slide) / (num_neg_samples + num_pos_samples):.2f}")
         
-        self.percent_positive_predicted.append(total_num_crops_negative_run - total_positive_crops_negative_run) 
         self.percent_negative_predicted.append(( num_neg_samples - negative_sum_slide ) / num_neg_samples)
+        self.num_negative_predicted.append(total_num_crops_negative_run - total_positive_crops_negative_run)
+
+
+
+class PlotData(tf.keras.callbacks.Callback):
+    
+    def __init__(self, testing_callback, frequency=25 ):
+        super().__init__()
+        self.testing_callback = testing_callback
+        self.frequency = frequency
+        
+        plt.ion()
+        
+        self.fig, (self.ax_2, self.ax_3) = plt.subplots(1,2, figsize=(12,5))
+
+    def on_epoch_end(self,epoch, logs=None):
+        if (epoch + 1) % self.frequency == 0:
+            self.plot_data(epoch)
+    
+    def plot_data(self,epoch):
+        
+        history = self.model.history
+        
+        self.ax_2.clear()
+        self.ax_3.clear()
+        
+        
+        self.ax_2.plot(self.testing_callback.num_positive_predicted, color = 'blue', label = 'Positive')
+        self.ax_2.plot(self.testing_callback.num_negative_predicted, color = 'red', label = 'Negative')
+        self.ax_2.set_title('Positive vs Negative Classification')
+        self.ax_2.set_ylabel('Num Classified')
+        self.ax_2.set_xlabel('Epoch')
+        self.ax_2.legend(loc='upper right')
+
+
+        self.ax_3.plot(self.testing_callback.percent_positive_predicted, color = 'blue', label = 'Positive')
+        self.ax_3.plot(self.testing_callback.percent_negative_predicted, color = 'red', label = 'Negative')
+        self.ax_3.set_title('Positive vs Negative Percent Predicted')
+        self.ax_3.set_ylabel('Percent Predicted')
+        self.ax_3.set_xlabel('Epoch')
+        self.ax_3.legend(loc='upper right')
+
+        self.fig.tight_layout()
+        self.fig.canvas.draw()
+        
+        self.fig.savefig('plots/positive-negative-graph.png')
+
+        plt.pause(0.1)

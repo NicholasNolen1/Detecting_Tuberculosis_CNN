@@ -1,0 +1,63 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bai \& Ameyaw(2024)Bai and Ameyaw]{bai2024global}
+Bai, W. and Ameyaw, E.~K.
+\newblock Global, regional and national trends in tuberculosis incidence and main risk factors: a study using data from 2000 to 2021.
+\newblock \emph{BMC Public Health}, 24\penalty0 (1):\penalty0 12, Jan 2024.
+\newblock \doi{10.1186/s12889-023-17495-6}.
+\newblock URL \url{https://doi.org/10.1186/s12889-023-17495-6}.
+
+\bibitem[Chen et~al.(2024)]{chen2024pulmonary}
+Chen, W.-C. et~al.
+\newblock Pulmonary tuberculosis diagnosis using an intelligent microscopy scanner and image recognition model for improved acid-fast bacilli detection in smears.
+\newblock \emph{Microorganisms}, 12\penalty0 (8):\penalty0 1734, aug 2024.
+\newblock \doi{10.3390/microorganisms12081734}.
+\newblock URL \url{https://doi.org/10.3390/microorganisms12081734}.
+
+\bibitem[Costa et~al.(2025)Costa, Serrão, Fujimoto, Ogusku, Romero, Romaguera, Pinto, López, Binatti, and Filho]{Costa2025}
+Costa, M. G.~F., Serrão, M. K.~M., Fujimoto, L. B.~M., Ogusku, M.~M., Romero, F.~P., Romaguera, L.~V., Pinto, K. M.~B., López, Y.~P., Binatti, F., and Filho, C. F. F.~C.
+\newblock {ODS3 - Dataset of smear microscopy images labelled to evaluate methods for Tuberculosis diagnosis}.
+\newblock 2 2025.
+\newblock \doi{10.25452/figshare.plus.27209355.v1}.
+\newblock URL \url{https://plus.figshare.com/articles/dataset/_b_ODS3_-_Dataset_of_smear_microscopy_images_labelled_to_evaluate_methods_for_Tuberculosis_diagnosis_b_/27209355}.
+
+\bibitem[Lin \& Medical(2024)Lin and Medical]{lin2024tbdata}
+Lin, E. and Medical, W.
+\newblock Detecting mycobacterium tuberculosis bacilli from tb smear images, 2024.
+\newblock URL \url{https://doi.org/10.17632/yhybmfrmgs.1}.
+
+\bibitem[Serrão et~al.(2024)Serrão, Costa, Fujimoto, Ogusku, and Costa~Filho]{Serrao2024}
+Serrão, M. K.~M., Costa, M. G.~F., Fujimoto, L. B.~M., Ogusku, M.~M., and Costa~Filho, C. F.~F.
+\newblock Automatic bright-field smear microscopy for diagnosis of pulmonary tuberculosis.
+\newblock \emph{Computers in Biology and Medicine}, 172:\penalty0 108167, Apr 2024.
+\newblock \doi{10.1016/j.compbiomed.2024.108167}.
+\newblock Epub 2024 Feb 29.
+
+\bibitem[Tamura et~al.(2024)Tamura, Llano, Aristizábal, Valencia, Sua, and Fernandez]{TAMURA2024200365}
+Tamura, G., Llano, G., Aristizábal, A., Valencia, J., Sua, L., and Fernandez, L.
+\newblock Machine-learning methods for detecting tuberculosis in ziehl-neelsen stained slides: A systematic literature review.
+\newblock \emph{Intelligent Systems with Applications}, 22:\penalty0 200365, 2024.
+\newblock ISSN 2667-3053.
+\newblock \doi{https://doi.org/10.1016/j.iswa.2024.200365}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S2667305324000413}.
+
+\bibitem[Trilaksana et~al.(2020)Trilaksana, Dwimudyari, Agoes, and Widhyatmoko]{TBDB}
+Trilaksana, H., Dwimudyari, G.~N., Agoes, A.~S., and Widhyatmoko, D.~B.
+\newblock Sputum smear images database: A resource for deep learning study based to detect bacilli for tb diagnose.
+\newblock \emph{AIP Conference Proceedings}, 2314\penalty0 (1):\penalty0 040013, 12 2020.
+\newblock ISSN 0094-243X.
+\newblock \doi{10.1063/5.0036388}.
+\newblock URL \url{https://doi.org/10.1063/5.0036388}.
+
+\bibitem[Veropoulos et~al.(1998)Veropoulos, Campbell, Learmonth, Knight, and Simpson]{10.1007/978-1-4471-1599-1_123}
+Veropoulos, K., Campbell, C., Learmonth, G., Knight, B., and Simpson, J.
+\newblock The automated identification of tubercle bacilli using image processing and neural computing techniques.
+\newblock In Niklasson, L., Bod{\'e}n, M., and Ziemke, T. (eds.), \emph{ICANN 98}, pp.\  797--802, London, 1998. Springer London.
+\newblock ISBN 978-1-4471-1599-1.
+
+\end{thebibliography}
